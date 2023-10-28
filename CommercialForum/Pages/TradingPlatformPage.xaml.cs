@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using CommercialForum.AppData;
 using CommercialForum.Models;
 using CommercialForum.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CommercialForum.Pages
 {
@@ -38,9 +39,10 @@ namespace CommercialForum.Pages
         {
         }
 
-        List<Product> all_productsList = new List<Product>();
+        List<Product> all_productsList;
         private void ProductListLoader()
         {
+            all_productsList = new List<Product>();
             var all_rowProducts = App.Connection.Products.Where(u=> u.DidPut == "Yes").ToList();
             foreach (var rowProduct in all_rowProducts)
             {
@@ -101,38 +103,9 @@ namespace CommercialForum.Pages
 
         /*private MouseButtonEventArgs test;*/
 
-        private bool isAvailable = true;
         private void AvailableBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             AvailabilitySort();
-        }
-
-        private void AvailableCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            AvailableFilter();
-        }
-
-        private int AvailableFilterRegime = 0;
-        private void AvailableFilter()
-        {
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
-
-            if (AvailableFilterRegime == 0)
-            {
-                AvailableFilterRegime += 1;
-                view.Filter = i => ((Product)i).IsAvailable == "No";
-            }
-            else if (AvailableFilterRegime == 1)
-            {
-                AvailableFilterRegime += 1;
-                view.Filter = i => ((Product)i).IsAvailable == "Yes";
-            }
-            else
-            {
-                AvailableFilterRegime = 0;
-                view.Filter = i => ((Product)i).IsAvailable == "Yes" || ((Product)i).IsAvailable == "No";
-            }
-            view.Refresh();
         }
 
         private bool isAvailableSortRegime;
@@ -162,7 +135,6 @@ namespace CommercialForum.Pages
             CostSort();
         }
 
-        private int isCostRegime;
         private bool isCostSortRegime;
         private void CostSort()
         {
@@ -199,9 +171,161 @@ namespace CommercialForum.Pages
             view.Refresh();
         }
 
-        private void NameBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        private bool CostValidationController(string text)
         {
+            foreach (char symbol in text)
+            {
+                if (!Char.IsDigit(symbol))
+                {
+                    return false;
+                }
+            }
 
+            return true;
+        }
+
+        private void MinPriceBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            /*if (MinPriceBox.Text.Length == 0)
+            {
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+                view.Filter = i => ((Product)i).Cost != 0;
+                view.Refresh();
+                return;
+            }*/
+
+            if (CostValidationController(MinPriceBox.Text))
+            {
+                UnitePricesController();
+            }
+            else
+            {
+                MessageBox.Show("Вы указали не целочисленное значение в поле минимальной цены!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void MaxPriceBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (CostValidationController(MaxPriceBox.Text))
+            {
+                UnitePricesController();
+            }
+            else
+            {
+                MessageBox.Show("Вы указали не целочисленное значение в поле максимальной цены!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void UnitePricesController()
+        {
+            if (MinPriceBox.Text.Length != 0 && MaxPriceBox.Text.Length != 0)
+            {
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+                view.Filter = i => ((Product)i).Cost >= Convert.ToDouble(MinPriceBox.Text) 
+                                        && ((Product)i).Cost <= Convert.ToDouble(MaxPriceBox.Text);
+                view.Refresh();
+            }
+            else
+            {
+                if (MinPriceBox.Text.Length != 0)
+                {
+                    CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+                    view.Filter = i => ((Product)i).Cost >= Convert.ToDouble(MinPriceBox.Text);
+                    view.Refresh();
+                }
+                else if (MaxPriceBox.Text.Length != 0)
+                {
+                    CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+                    view.Filter = i => ((Product)i).Cost <= Convert.ToDouble(MaxPriceBox.Text);
+                    view.Refresh();
+                }
+            }
+        }
+
+        private bool little_plug = true;
+        private void AvailableCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (little_plug)
+            {
+                little_plug = false;
+                return;
+            }
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+            view.Filter = i => ((Product)i).IsAvailable == "Yes";
+            view.Refresh();
+        }
+
+        private void AvailableCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+            view.Filter = i => ((Product)i).IsAvailable == "No";
+            view.Refresh();
+        }
+
+        private void AvailableCheckBox_Indeterminate(object sender, RoutedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(productsList.ItemsSource);
+            view.Filter = i => ((Product)i).IsAvailable == "Yes" || ((Product)i).IsAvailable == "No";
+            view.Refresh();
+        }
+
+        private void CategorySearchBut_Click(object sender, RoutedEventArgs e)
+        {
+            ProductListLoader();
+            List<Product> new_productList = new List<Product>();
+            foreach (var product in all_productsList)
+            {
+                var all_relations = App.Connection.Category_Relationship.Where(u=> u.Id_Product == product.IdProduct).ToList();
+
+                bool Satisfy = true;
+                foreach (var relation in App.CategoryTransit)
+                {
+                    var find_relation = all_relations.Where(u=> u.Id_Category == relation.IdCategory).FirstOrDefault();
+                    if (find_relation == null)
+                    {
+                        Satisfy = false;
+                        break;
+                    }
+                }
+
+                if (Satisfy)
+                {
+                    new_productList.Add(product);
+                }
+            }
+
+            productsList.ItemsSource = null;
+            productsList.ItemsSource = new_productList;
+        }
+
+        private void SearchByName()
+        {
+            /*List<Product> searchList = new List<Product>();
+            foreach (var view_product in productsList.ItemsSource)
+            {
+                Product product = view_product as Product;
+                if (product.Name.Contains(SearchBox.Text))
+                {
+                    searchList.Add((Product)view_product);
+                }
+            }
+            productsList.ItemsSource = searchList;*/
+
+            List<Product> searchList = new List<Product>();
+            foreach (var product in all_productsList)
+            {
+                if (product.Name.Contains(SearchBox.Text))
+                {
+                    searchList.Add(product);
+                }
+            }
+            productsList.ItemsSource = searchList;
+        }
+
+        private void SearchBut_Click(object sender, RoutedEventArgs e)
+        {
+            SearchByName();
         }
     }
 }

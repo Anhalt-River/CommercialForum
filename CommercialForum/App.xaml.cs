@@ -11,7 +11,7 @@ namespace CommercialForum
     public partial class App : Application
     {
 
-        public static CommercialForumEntities Connection = new CommercialForumEntities();
+        public static ComForumEntities Connection = new ComForumEntities();
         public static int AuthId { get; set; } = 0;
         public static int RoleId { get; set; } = 0;
         public static bool isBasketOpened { get; set; } = false;

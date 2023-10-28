@@ -28,7 +28,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="ProductImageBut" Background="Transparent" Width="100" Height="100" Click="ProductImageBut_Click">
+                    <Button Background="Transparent" Width="100" Height="100">
                         <Image x:Name="Product_Image" Source="/Materials/Images/image_fail.png"/>
                     </Button>
                     

@@ -1,4 +1,5 @@
-﻿using CommercialForum.Models;
+﻿using CommercialForum.AppData;
+using CommercialForum.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,7 @@ namespace CommercialForum.Windows
 
         private void TranzitController()
         {
+            CategoryFrame.Content = new Pages.CategoryPage();
             App.isCategoriesTransit = true;
         }
 

@@ -40,7 +40,7 @@
             <Border CornerRadius="2" BorderThickness="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="SearchBox" SpellCheck.IsEnabled="True" Language="ru-ru" Height="30" MinWidth="400" BorderBrush="Navy" BorderThickness="2"/>
-                    <Button Background="Transparent" Width="60" Height="30" BorderThickness="2">
+                    <Button x:Name="SearchBut" Background="Transparent" Width="60" Height="30" BorderThickness="2" Click="SearchBut_Click">
                         <Image Source="/Materials/Images/magnifier.png"/>
                     </Button>
                 </StackPanel>
@@ -54,7 +54,7 @@
                     <TextBlock Text="Price" HorizontalAlignment="Left" FontSize="20"/>
                     <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 0">
                         <TextBlock Text="from" Margin="0"/>
-                        <TextBox x:Name="MinPriceBox" MinWidth="40" MaxWidth="60">
+                        <TextBox x:Name="MinPriceBox" MinWidth="40" MaxWidth="60" LostFocus="MinPriceBox_LostFocus">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="2"/>
@@ -63,7 +63,7 @@
                         </TextBox>
 
                         <TextBlock Text="to" Margin="5, 0, 0, 0"/>
-                        <TextBox x:Name="MaxPriceBox" MinWidth="40" MaxWidth="60">
+                        <TextBox x:Name="MaxPriceBox" MinWidth="40" MaxWidth="60" LostFocus="MaxPriceBox_LostFocus">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="2"/>
@@ -78,7 +78,7 @@
                     <StackPanel Orientation="Horizontal" Margin="10, 0, 0, 0">
                         <TextBlock Text="Is available: " Margin="0, 5, 5, 5"/>
                         <CheckBox x:Name="AvailableCheckBox" IsChecked="True" IsThreeState="True" Height="20"
-                                  Click="AvailableCheckBox_Click">
+                                  Checked="AvailableCheckBox_Checked" Unchecked="AvailableCheckBox_Unchecked" Indeterminate="AvailableCheckBox_Indeterminate">
                             <CheckBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="2"/>
@@ -91,8 +91,12 @@
                 <StackPanel Margin="0, 0, 0, 10" HorizontalAlignment="Left">
                     <TextBlock Text="Category" FontSize="20"/>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="CategoryChooseBut" Margin="-5, 5, 5, 5" MinWidth="50" Background="#FFD9FFCF" Click="CategoryChooseBut_Click">
+                        <Button x:Name="CategoryChooseBut" Margin="10, 5, 5, 5" MinWidth="50" Background="#FFD9FFCF" Click="CategoryChooseBut_Click">
                             <TextBlock Text="Choose" />
+                        </Button>
+
+                        <Button x:Name="CategorySearchBut" Width="30" Background="#FFD9FFCF" Click="CategorySearchBut_Click">
+                            <Image Source="/Materials/Images/magnifier.png"/>
                         </Button>
                     </StackPanel>
                 </StackPanel>
@@ -131,11 +135,11 @@
                                 DisplayMemberBinding="{Binding Name}">
                                 <GridViewColumn.HeaderTemplate>
                                     <DataTemplate>
-                                        <TextBlock x:Name="NameBlock" Text="Name" MouseDown="NameBlock_MouseDown"/>
+                                        <TextBlock x:Name="NameBlock" Text="Name"/>
                                     </DataTemplate>
                                 </GridViewColumn.HeaderTemplate>
                             </GridViewColumn>
-                            
+
                             <GridViewColumn
                                 DisplayMemberBinding="{Binding Cost}">
                                 <GridViewColumn.HeaderTemplate>
@@ -144,7 +148,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.HeaderTemplate>
                             </GridViewColumn>
-                            
+
                             <GridViewColumn
                                 DisplayMemberBinding="{Binding IsAvailable}" Width="140">
                                 <GridViewColumn.HeaderTemplate>
@@ -163,36 +167,6 @@
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
-                <!--<ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="5">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
-                                <Image Source="{Binding Image}" Width="100" Height="90" Stretch="Fill">
-                                    <Image.Effect>
-                                        <DropShadowEffect ShadowDepth="1"/>
-                                    </Image.Effect>
-                                </Image>
-                                <StackPanel Orientation="Vertical" Margin="10, 5, 5, 5">
-                                    <TextBlock Margin="1" Text="Name: " FontSize="20"/>
-                                    <TextBlock Margin="1" Text="{Binding Name}" FontSize="20"/>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="1" Text="Cost: " FontSize="20"/>
-                                    <TextBlock Margin="1" Text="{Binding Cost}" FontSize="20"/>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Margin="1" Text="Availability: " FontSize="20"/>
-                                    <TextBlock Margin="1" Text="{Binding isAvailable}" FontSize="20"/>
-                                </StackPanel>
-
-                                <Button x:Name="MoreInfoBut" Content="Узнать больше" Click="MoreInfoBut_Click"/>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
-                
             </ListView>
         </StackPanel>
     </Grid>

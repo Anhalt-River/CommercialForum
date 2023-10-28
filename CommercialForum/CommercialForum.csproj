@@ -64,8 +64,53 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppData\Basket.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
     <Compile Include="AppData\BasketList.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Category.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Category_Relationship.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\ComForum.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComForum.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\ComForum.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\ComForum.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComForum.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Orders.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Products.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Roles.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\sp_helpdiagrams_Result.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\sysdiagrams.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppData\Users.cs">
+      <DependentUpon>ComForum.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Basic_Category.cs" />
     <Compile Include="Models\NavigationManager.cs" />
@@ -124,51 +169,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AppData\Basket.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\Category.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\Category_Relationship.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\ForumModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ForumModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\ForumModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\ForumModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ForumModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\Orders.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\Products.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\Roles.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\sp_helpdiagrams_Result.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\sysdiagrams.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppData\Users.cs">
-      <DependentUpon>ForumModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -295,12 +295,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="AppData\ForumModel.edmx">
+    <EntityDeploy Include="AppData\ComForum.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ForumModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ComForum.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AppData\ForumModel.edmx.diagram">
-      <DependentUpon>ForumModel.edmx</DependentUpon>
+    <None Include="AppData\ComForum.edmx.diagram">
+      <DependentUpon>ComForum.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -312,16 +312,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppData\ForumModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ForumModel.Context.cs</LastGenOutput>
-      <DependentUpon>ForumModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="AppData\ForumModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ForumModel.edmx</DependentUpon>
-      <LastGenOutput>ForumModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Materials\Images\Main_img\Buy.png" />
     <Resource Include="Materials\Images\Save.png" />
     <Resource Include="Materials\Images\Main_img\Employees.png" />
@@ -350,6 +340,17 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="AppData\ComForum.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ComForum.edmx</DependentUpon>
+      <LastGenOutput>ComForum.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AppData\ComForum.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ComForum.edmx</DependentUpon>
+      <LastGenOutput>ComForum.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("appdata/forummodel.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("appdata/forummodel.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("appdata/comforum.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("appdata/comforum.tt")]
 
 

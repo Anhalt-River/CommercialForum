@@ -114,6 +114,8 @@ namespace CommercialForum.Pages
                 {
                     App.CategoryTransit.Add(category);
                 }
+
+                MessageBox.Show("Категории добавлены в фильтр!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
@@ -143,6 +145,7 @@ namespace CommercialForum.Pages
                     }
                 }
 
+                MessageBox.Show("Категории успешно сохранены!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                 App.Connection.SaveChanges();
             }
         }
