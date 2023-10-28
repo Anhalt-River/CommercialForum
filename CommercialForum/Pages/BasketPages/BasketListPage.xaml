@@ -1,0 +1,85 @@
+﻿<Page x:Class="CommercialForum.Pages.BasketPages.BasketListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CommercialForum.Pages.BasketPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BasketListPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Корзина" Style="{StaticResource TitleBlock}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <ListView x:Name="productsList" ScrollViewer.VerticalScrollBarVisibility="Visible" MinWidth="500" 
+                Visibility="Visible" Height="300" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch"
+                HorizontalAlignment="Center" VerticalContentAlignment="Stretch" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent">
+                <ListView.Resources>
+                    <Style TargetType="{x:Type ScrollBar}">
+                        <Setter Property="Background" Value="#FFD9FFCF"/>
+                    </Style>
+
+                    <Style TargetType="{x:Type ToolBarOverflowPanel}">
+                        <Setter Property="Background" Value="#FFD9FFCF"/>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="5">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5">
+                                <Image Source="{Binding Image}" Width="100" Height="90" Stretch="Fill">
+                                    <Image.Effect>
+                                        <DropShadowEffect ShadowDepth="1"/>
+                                    </Image.Effect>
+                                </Image>
+                                <StackPanel Orientation="Vertical" Margin="10, 5, 5, 5">
+                                    <TextBlock Margin="1" Text="Name: " FontSize="20"/>
+                                    <TextBlock Margin="1" Text="{Binding Name}" FontSize="20"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="1" Text="Cost: " FontSize="20"/>
+                                    <TextBlock Margin="1" Text="{Binding Cost}" FontSize="20"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="1" Text="Availability: " FontSize="20"/>
+                                    <TextBlock Margin="1" Text="{Binding Available}" FontSize="20"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Orientation="Vertical">
+            <Button x:Name="RemoveBut" Width="60" Height="60" Click="RemoveBut_Click">
+                <Image Source="/Materials/Images/Basket_img/RemoveCart.png"/>
+            </Button>
+
+            <Button x:Name="LearnMoreBut" Width="60" Height="60" Click="LearnMoreBut_Click">
+                <Image Source="/Materials/Images/Basket_img/LearnMore.png"/>
+            </Button>
+
+            <Button x:Name="ClearCartBut" Background="#FFD28C8C" Width="60" Height="60" Click="ClearCartBut_Click">
+                <Image Source="/Materials/Images/Basket_img/DeleteCart.png"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

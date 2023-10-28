@@ -1,0 +1,114 @@
+﻿<Page x:Class="CommercialForum.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CommercialForum.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="900"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="menuBut" Background="Transparent" Width="Auto" Height="Auto" Click="menuBut_Click" BorderThickness="0">
+            <Image Source="/Materials/Images/Main_img/menu.png"/>
+        </Button>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5">
+            <Canvas Name="MenuCanvas" Margin="10">
+                <Border BorderThickness="2" Name="MenuBoard" Height="70" Width="Auto">
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MyProfileBut" Background="Transparent" Width="Auto" Height="Auto" Click="MyProfileBut_Click">
+                            <Image Source="/Materials/Images/Main_img/Profile.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Мой профиль"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="TradingPlatformBut" Background="Transparent" Width="Auto" Height="Auto" Click="TradingPlatformBut_Click">
+                            <Image Source="/Materials/Images/Main_img/Buy.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Торговая площадка"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="BasketBut" Background="Transparent" Width="Auto" Height="Auto" Click="BasketBut_Click">
+                            <Image Source="/Materials/Images/Main_img/Shopping_cart.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Корзина"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="PurchaseHistoryBut" Background="Transparent" Width="Auto" Height="Auto" Click="PurchaseHistoryBut_Click">
+                            <Image Source="/Materials/Images/Main_img/History.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="История покупок"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="BalanceBut" Background="Transparent" Width="Auto" Height="Auto" Click="BalanceBut_Click">
+                            <Image Source="/Materials/Images/Main_img/Money.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Баланс"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="TraderListBut" Background="Transparent" Width="Auto" Height="Auto" Visibility="Visible" Click="TraderListBut_Click">
+                            <Image Source="/Materials/Images/Main_img/PutUpForSale.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Мои товары"/>
+                            </Button.ToolTip>
+                        </Button>
+                        
+                        <Button x:Name="ClientListBut" Background="Transparent" Width="Auto" Height="Auto" Visibility="Visible" Click="TraderListBut_Click">
+                            <Image Source="/Materials/Images/Main_img/Employees.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Список клиентов"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                        <Button x:Name="LeaveBut" Background="Transparent" Width="Auto" Height="Auto" Click="LeaveBut_Click">
+                            <Image Source="/Materials/Images/Main_img/Leave.png"/>
+
+                            <Button.ToolTip>
+                                <TextBlock Text="Деавторизация"/>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </StackPanel>
+                </Border>
+            </Canvas>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Visibility="Collapsed">
+            <TextBlock Text="Главная страница" Style="{StaticResource TitleBlock}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <Frame x:Name="BalanceFrame" NavigationUIVisibility="Hidden"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="2">
+            <Frame x:Name="MainPage_localFrame" NavigationUIVisibility="Hidden"/>
+        </StackPanel>
+    </Grid>
+</Page>
