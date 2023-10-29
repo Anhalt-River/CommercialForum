@@ -150,6 +150,9 @@
     <Compile Include="Pages\StaffPages\ClientListPage.xaml.cs">
       <DependentUpon>ClientListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\StaffPages\EmployeeListPage.xaml.cs">
+      <DependentUpon>EmployeeListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StaffPages\MainStaffPage.xaml.cs">
       <DependentUpon>MainStaffPage.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\StaffPages\ClientListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\StaffPages\EmployeeListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,6 +358,7 @@
       <DependentUpon>ComForum.edmx</DependentUpon>
       <LastGenOutput>ComForum.cs</LastGenOutput>
     </Content>
+    <Resource Include="Materials\Images\Basket_img\Payment.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

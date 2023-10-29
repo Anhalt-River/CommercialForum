@@ -80,6 +80,10 @@
             <Button x:Name="ClearCartBut" Background="#FFD28C8C" Width="60" Height="60" Click="ClearCartBut_Click">
                 <Image Source="/Materials/Images/Basket_img/DeleteCart.png"/>
             </Button>
+
+            <Button x:Name="PaymentBut" Background="#FFD9FFCF" Width="60" Height="60" Click="PaymentBut_Click">
+                <Image Source="/Materials/Images/Basket_img/Payment.png"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

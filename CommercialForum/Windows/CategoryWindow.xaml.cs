@@ -54,6 +54,7 @@ namespace CommercialForum.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            App.Current.MainWindow.Activate();
             App.isCategoriesOpened = false;
         }
     }

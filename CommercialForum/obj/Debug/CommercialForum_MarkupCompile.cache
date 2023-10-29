@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\Xakep\Source\Repos\CommercialForum\CommercialForum\obj\Debug\
+C:\Users\Xakep\source\repos\CommercialForum\CommercialForum\obj\Debug\
 CommercialForum
 none
 false
 DEBUG;TRACE
-C:\Users\Xakep\Source\Repos\CommercialForum\CommercialForum\App.xaml
+C:\Users\Xakep\source\repos\CommercialForum\CommercialForum\App.xaml
 221018238741
 214044667
 45-2037491221
-18-724199329
+18-1590277025
 MainWindow.xaml;Pages\AuthPage.xaml;Pages\BalancePages\BalancePage.xaml;Pages\BalancePages\BalanceStatusPage.xaml;Pages\BasketPage.xaml;Pages\BasketPages\BasketListPage.xaml;Pages\CategoryPage.xaml;Pages\MainPage.xaml;Pages\MyProfilePage.xaml;Pages\PlugPage.xaml;Pages\ProductPages\ProductEditPage.xaml;Pages\ProductPages\ProductEntryPage.xaml;Pages\ProductPages\ProductListPage.xaml;Pages\ProductPages\ProductPage.xaml;Pages\PurchaseHistoryPage.xaml;Pages\RegistrationPage.xaml;Pages\StaffPages\ClientListPage.xaml;Pages\StaffPages\MainStaffPage.xaml;Pages\TradingPlatformPage.xaml;Windows\BasketWindow.xaml;Windows\CategoryWindow.xaml;Windows\ProductWindow.xaml;
 
 False

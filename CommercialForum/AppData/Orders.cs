@@ -18,6 +18,7 @@ namespace CommercialForum.AppData
         public Nullable<int> Id_Basket { get; set; }
         public Nullable<double> TotalAmount { get; set; }
         public string IsConcluded { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Basket Basket { get; set; }
     }

@@ -147,6 +147,7 @@ namespace CommercialForum.Pages
 
                 MessageBox.Show("Категории успешно сохранены!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                 App.Connection.SaveChanges();
+                App.Current.MainWindow.Activate();
             }
         }
 

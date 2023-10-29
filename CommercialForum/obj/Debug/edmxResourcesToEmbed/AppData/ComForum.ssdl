@@ -6,12 +6,14 @@
     </Key>
     <Property Name="Id_Basket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="LastCollectDate" Type="date" />
+    <Property Name="Id_Client" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="BasketList">
     <Key>
-      <PropertyRef Name="Id_Product" />
-      <PropertyRef Name="Id_Basket" />
+      <PropertyRef Name="Id_BasketList" />
     </Key>
+    <Property Name="Id_BasketList" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Id_Product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Id_Basket" Type="int" Nullable="false" />
     <Property Name="Count" Type="int" />
@@ -35,11 +37,10 @@
     <Key>
       <PropertyRef Name="Id_Order" />
     </Key>
-    <Property Name="Id_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Id_Client" Type="int" />
-    <Property Name="Date" Type="date" />
-    <Property Name="IsConcluded" Type="nvarchar" MaxLength="5" />
+    <Property Name="Id_Order" Type="int" Nullable="false" />
     <Property Name="Id_Basket" Type="int" />
+    <Property Name="TotalAmount" Type="float" />
+    <Property Name="IsConcluded" Type="varchar" MaxLength="3" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -96,6 +97,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Basket_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Basket" Type="Self.Basket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id_User" />
+      </Principal>
+      <Dependent Role="Basket">
+        <PropertyRef Name="Id_Client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BasketList_Basket">
     <End Role="Basket" Type="Self.Basket" Multiplicity="1" />
     <End Role="BasketList" Type="Self.BasketList" Multiplicity="*" />
@@ -141,18 +154,6 @@
       </Principal>
       <Dependent Role="Orders">
         <PropertyRef Name="Id_Basket" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Orders_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id_User" />
-      </Principal>
-      <Dependent Role="Orders">
-        <PropertyRef Name="Id_Client" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -213,6 +214,10 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="BasketList" EntitySet="BasketList" />
     </AssociationSet>
+    <AssociationSet Name="FK_Basket_Users" Association="Self.FK_Basket_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Basket" EntitySet="Basket" />
+    </AssociationSet>
     <AssociationSet Name="FK_BasketList_Basket" Association="Self.FK_BasketList_Basket">
       <End Role="Basket" EntitySet="Basket" />
       <End Role="BasketList" EntitySet="BasketList" />
@@ -227,10 +232,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Orders_Basket" Association="Self.FK_Orders_Basket">
       <End Role="Basket" EntitySet="Basket" />
-      <End Role="Orders" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
-      <End Role="Users" EntitySet="Users" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">

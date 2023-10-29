@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CommercialForum.Pages.BasketPages;
 
 namespace CommercialForum.Windows
 {
@@ -23,6 +24,8 @@ namespace CommercialForum.Windows
         {
             InitializeComponent();
             BasicComponentsController();
+
+            BasketFrame.Content = new BasketListPage();
         }
 
         private void BasicComponentsController()
@@ -32,7 +35,15 @@ namespace CommercialForum.Windows
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            App.Current.MainWindow.Activate();
             App.isBasketOpened = false;
+        }
+
+        public BasketWindow(int basketId)
+        {
+            InitializeComponent();
+            BasicComponentsController();
+            BasketFrame.Content = new BasketListPage(basketId);
         }
     }
 }

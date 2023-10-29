@@ -28,7 +28,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <ListView  x:Name="ordersList" ScrollViewer.VerticalScrollBarVisibility="Visible" MinWidth="500" 
                       Visibility="Visible" Height="300" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch"
-                      HorizontalAlignment="Center" BorderBrush="Transparent">
+                      HorizontalAlignment="Center" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ListView.Resources>
                     <Style TargetType="{x:Type ScrollBar}">
                         <Setter Property="Background" Value="#FFD9FFCF"/>
@@ -64,12 +64,16 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Orientation="Vertical">
+            <Button x:Name="PaymentBut" Click="PaymentBut_Click" Margin="0, 10, 0, 10">
+                <TextBlock Text="Оплатить"/>
+            </Button>
+
             <Button x:Name="HistoryBut" Click="HistoryBut_Click" Margin="0, 10, 0, 10">
                 <TextBlock Text="Корзина заказа"/>
             </Button>
 
             <Button x:Name="BreakOrderBut" Click="BreakOrderBut_Click" Margin="0, 10, 0, 10" Height="Auto" Background="#FFD28C8C">
-                <TextBlock Text="Разорвать договор" TextWrapping="Wrap"/>
+                <TextBlock Text="Отменить заказ" TextWrapping="Wrap"/>
             </Button>
         </StackPanel>
     </Grid>

@@ -77,6 +77,7 @@ namespace CommercialForum.Pages
                 {
                     Id_Basket = new_basket.Id_Basket,
                     Id_Product = taked_productId,
+                    Count = 1
                 };
                 App.Connection.BasketList.Add(basketList);
                 App.Connection.SaveChanges();
@@ -107,14 +108,14 @@ namespace CommercialForum.Pages
             var search_basket = App.Connection.Basket.Where(u => u.Id_Client == App.AuthId && u.Status == "Processing").FirstOrDefault();
             if (search_basket == null)
             {
-                MessageBox.Show("У вас нет даже корзины, какой товар?", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("У вас нет даже корзины, какой товар?", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
                 var search_productInside = App.Connection.BasketList.Where(u=> u.Id_Product == taked_productId && u.Id_Basket == search_basket.Id_Basket).FirstOrDefault();
                 if (search_productInside == null)
                 {
-                    MessageBox.Show("Данного товара нет в вашей корзине", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Данного товара нет в вашей корзине", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {

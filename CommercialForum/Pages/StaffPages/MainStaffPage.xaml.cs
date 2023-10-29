@@ -23,16 +23,25 @@ namespace CommercialForum.Pages.StaffPages
         public MainStaffPage()
         {
             InitializeComponent();
+            BasicComponentController();
+        }
+
+        private void BasicComponentController()
+        {
+            if (App.RoleId == 4)
+            {
+                EmployeesBut.Visibility = Visibility.Visible;
+            }
         }
 
         private void EmployeesBut_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new StaffPages.EmployeeListPage());
         }
 
         private void allClientsBut_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new StaffPages.ClientListPage());
         }
     }
 }

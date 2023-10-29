@@ -46,6 +46,7 @@
           <Property Name="Id_Basket" Type="int" />
           <Property Name="TotalAmount" Type="float" />
           <Property Name="IsConcluded" Type="varchar" MaxLength="3" />
+          <Property Name="Date" Type="date" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -377,6 +378,7 @@
           <Property Name="Id_Basket" Type="Int32" />
           <Property Name="TotalAmount" Type="Double" />
           <Property Name="IsConcluded" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Basket" Relationship="ComForumModel.FK_Orders_Basket" FromRole="Orders" ToRole="Basket" />
         </EntityType>
         <EntityType Name="Products">
@@ -581,6 +583,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="ComForumModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="IsConcluded" ColumnName="IsConcluded" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
                 <ScalarProperty Name="Id_Basket" ColumnName="Id_Basket" />

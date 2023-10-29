@@ -68,10 +68,10 @@ namespace CommercialForum.Pages
             {
                 case 1:       //Клиент
                     TraderListBut.Visibility = Visibility.Collapsed;
-                    ClientListBut.Visibility = Visibility.Collapsed;
+                    UserListBut.Visibility = Visibility.Collapsed;
                     break;
                 case 2:       //Торговец                    
-                    ClientListBut.Visibility = Visibility.Collapsed;
+                    UserListBut.Visibility = Visibility.Collapsed;
                     break;
                 case 3:       //Сотрудник       
                     TraderListBut.Visibility = Visibility.Collapsed;
@@ -121,6 +121,11 @@ namespace CommercialForum.Pages
         private void TradingPlatformBut_Click(object sender, RoutedEventArgs e)
         {
             NavigationManager.MainPageFrame.Content = new TradingPlatformPage();
+        }
+
+        private void UserListBut_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage_localFrame.Content = new StaffPages.MainStaffPage();
         }
     }
 }

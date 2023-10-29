@@ -1,4 +1,4 @@
-﻿<Page x:Class="CommercialForum.Pages.StaffPages.ClientListPage"
+﻿<Page x:Class="CommercialForum.Pages.StaffPages.EmployeeListPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CommercialForum.Pages.StaffPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientListPage">
+      Title="EmployeeListPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,13 +26,13 @@
                 <Image Source="/Materials/Images/Back.png"/>
             </Button>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1">
-            <TextBlock Text="Список клиентов" Style="{StaticResource TitleBlock}"/>
+            <TextBlock Text="Список сотрудников" Style="{StaticResource TitleBlock}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
-            <ListView x:Name="clientsList" ScrollViewer.VerticalScrollBarVisibility="Visible" MinWidth="500" 
+            <ListView x:Name="employeesList" ScrollViewer.VerticalScrollBarVisibility="Visible" MinWidth="500" 
                       Visibility="Visible" Height="300" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch"
                       HorizontalAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent">
                 <ListView.Resources>
@@ -71,16 +71,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Orientation="Vertical">
-            <Button x:Name="HistoryBut" Click="HistoryBut_Click" Margin="0, 10, 0, 10">
-                <TextBlock Text="История покупок"/>
-            </Button>
-
-            <Button x:Name="TraderProductsBut" Click="TraderProductsBut_Click" Margin="0, 10, 0, 10">
-                <TextBlock Text="Товары продавца"/>
-            </Button>
-
-            <Button x:Name="UserDataBut" Click="UserDataBut_Click" Margin="0, 10, 0, 10">
-                <TextBlock Text="Данные пользователя"/>
+            <Button x:Name="UserDataBut" Click="UserDataBut_Click" Margin="0, 10, 0, 10" Height="Auto">
+                <TextBlock Text="Данные пользователя" TextWrapping="Wrap"/>
             </Button>
         </StackPanel>
     </Grid>

@@ -26,7 +26,7 @@
                 <TextBlock Text="List of clients" FontSize="30" TextWrapping="Wrap"/>
             </Button>
 
-            <Button x:Name="EmployeesBut" Height="80" FontWeight="Bold" Width="200" Visibility="Visible" Click="EmployeesBut_Click">
+            <Button x:Name="EmployeesBut" Height="80" FontWeight="Bold" Width="200" Visibility="Collapsed" Click="EmployeesBut_Click">
                 <TextBlock Text="List of employees" FontSize="30" TextWrapping="Wrap"/>
             </Button>
         </StackPanel>

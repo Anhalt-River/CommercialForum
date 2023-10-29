@@ -10,7 +10,7 @@ namespace CommercialForum.Models
     {
         public int IdOrder { get; set; }
         public int IdClient { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string IsConcluded { get; set; }
         public float TotalCost { get; set; }
         public int IdBasket { get; set; }

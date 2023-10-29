@@ -78,11 +78,11 @@
                             </Button.ToolTip>
                         </Button>
                         
-                        <Button x:Name="ClientListBut" Background="Transparent" Width="Auto" Height="Auto" Visibility="Visible" Click="TraderListBut_Click">
+                        <Button x:Name="UserListBut" Background="Transparent" Width="Auto" Height="Auto" Visibility="Visible" Click="UserListBut_Click">
                             <Image Source="/Materials/Images/Main_img/Employees.png"/>
 
                             <Button.ToolTip>
-                                <TextBlock Text="Список клиентов"/>
+                                <TextBlock Text="Список пользователей"/>
                             </Button.ToolTip>
                         </Button>
 
